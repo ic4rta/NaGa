@@ -2,7 +2,7 @@
 Cree un pequeño Ransomware por mero aprendizaje
 
 # Importante
-De momento solo puede ser ejectado en equipos Linux
+De momento solo puede ser ejecutado en equipos Linux
 
 No tiene funcion de desencriptado pero la key es: abcdefghij
 
