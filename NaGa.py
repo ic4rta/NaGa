@@ -42,7 +42,7 @@ def encriptar():
             f.close()
 
             os.remove(f'{cambiarRuta()}/{archivoFor}')
-            key = os.urandom(16)
+            key = "abcdefghij"
             aes = pyaes.AESModeOfOperationCTR(key)
             datosEncriptados = aes.encrypt(datosAr)
 
