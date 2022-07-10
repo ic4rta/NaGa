@@ -1,5 +1,5 @@
 # NaGa
-Cree un pequeño Ransomware por mero aprendizaje
+Cree un pequeño muy simple Ransomware, solo funciona para encriptar archivos desde un directorio y sus subdirectorios 
 
 # Importante
 De momento solo puede ser ejecutado en equipos Linux
