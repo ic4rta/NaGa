@@ -41,7 +41,7 @@ def encriptar():
             f.close()
 
             os.remove(f'{recorrer_dir()}/{archivoFor}')
-            key = "Azrael"
+            key = "abcdefghij"
             aes = pyaes.AESModeOfOperationCTR(key)
             datosEncriptados = aes.encrypt(datosAr)
 
